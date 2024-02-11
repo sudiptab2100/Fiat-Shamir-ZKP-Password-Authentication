@@ -1,2 +1,5 @@
 env/
 __pycache__/
+public_params.json
+commitment.json
+proof.json
