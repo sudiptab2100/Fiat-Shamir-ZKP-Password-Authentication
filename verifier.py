@@ -19,7 +19,8 @@ t = proof['t']
 r = proof['r']
 
 # Verify the proof
-hash_message = encode_packed(['uint256', 'uint256', 'uint256'], [g, commitment, t])
+k = 0
+hash_message = encode_packed(['uint256', 'uint256', 'uint256', 'uint256'], [g, commitment, t, k])
 c = int(sha256(hash_message).hexdigest(), 16)
 t1 = (pow(g, r, p) * pow(commitment, c, p)) % p
 print("Valid:", t == t1)
