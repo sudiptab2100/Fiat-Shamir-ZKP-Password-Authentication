@@ -2,6 +2,7 @@ import json
 import random
 from encode_password import encode_password
 from hashlib import sha256
+from eth_abi.packed import encode_packed
 
 # Read the public parameters from public_params.json file
 with open('public_params.json', 'r') as file:
@@ -19,8 +20,8 @@ def generate_proof(password):
     x = encode_password(password)
     v = random.randint(1, q)
     t = pow(g, v, p)
-    hash_message = str(g) + str(commitment) + str(t)
-    c = int(sha256(hash_message.encode()).hexdigest(), 16)
+    hash_message = encode_packed(['uint256', 'uint256', 'uint256'], [g, commitment, t])
+    c = int(sha256(hash_message).hexdigest(), 16)
     r = (v - c * x) % q
     
     proof = {

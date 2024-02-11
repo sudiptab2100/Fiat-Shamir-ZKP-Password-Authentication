@@ -1,5 +1,6 @@
 import json
 from hashlib import sha256
+from eth_abi.packed import encode_packed
 
 # Read the commitment & public parameters from commitment.json file
 with open('commitment.json', 'r') as file:
@@ -18,7 +19,7 @@ t = proof['t']
 r = proof['r']
 
 # Verify the proof
-hash_message = str(g) + str(commitment) + str(t)
-c = int(sha256(hash_message.encode()).hexdigest(), 16)
+hash_message = encode_packed(['uint256', 'uint256', 'uint256'], [g, commitment, t])
+c = int(sha256(hash_message).hexdigest(), 16)
 t1 = (pow(g, r, p) * pow(commitment, c, p)) % p
 print("Valid:", t == t1)
