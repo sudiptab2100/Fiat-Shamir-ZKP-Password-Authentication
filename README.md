@@ -1,4 +1,4 @@
-# Fiat-Shamir Non-Interactive Zero Knowledge Poof based Password Authentication (Python)
+# Fiat-Shamir Non-Interactive Zero Knowledge Poof based Password Authentication (Python 3.11.7)
 
 ## Setup & Run
 
