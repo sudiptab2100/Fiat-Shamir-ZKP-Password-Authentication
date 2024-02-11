@@ -10,7 +10,7 @@ def generate_params(q_bit_length):
     return p, q, g
 
 if __name__ == '__main__':
-    p, q, g = generate_params(512)
+    p, q, g = generate_params(256)
     params = {'p': p, 'q': q, 'g': g}
     with open('public_params.json', 'w') as f:
         json.dump(params, f, indent=4)
